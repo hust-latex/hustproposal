@@ -195,7 +195,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{0}
+% \CheckSum{740}
 %
 % \iffalse
 %<*!(example-bib)>
@@ -249,9 +249,444 @@
 %
 % The whole project is published under LPPL v1.3 License at \href{https://github.com/hust-latex/hustproposal}{GitHub}.
 %
+% 中文使用说明见\autoref{part:中文使用说明}。
+%
+% English version instruction is in \autoref{part:English Version Instruction}.
+%
+% \part{中文使用说明}\label{part:中文使用说明}
+%
+% \section{使用必要条件}
+%
+% \begin{enumerate}
+%     \item 安装最新版本的\href{http://www.tug.org/texlive/}{\texttt{TeXLive}}（推荐）或\href{http://miktex.org/}{\texttt{MiKTeX}}。因为未及时更新的宏包可能存在未修复的bug，请确保所有宏包都更新至最新。
+%     \item 安装如下中文字体\footnote{本模板所用到的英文字体\textsf{Tex Gyre Termes}，\textsf{Droid Sans}和\textsf{CMU Typewriter Text}均默认安装于\textsf{TeXLive}和\textsf{MiKTeX}中。}：
+%     \begin{enumerate}[label=\emph{\alph*})]
+%         \item \textsf{AdobeSongStd-Light}
+%         \item \textsf{AdobeKaitiStd-Regular}
+%         \item \textsf{AdobeHeitiStd-Regular}
+%         \item \textsf{AdobeFangsongStd-Regular}
+%     \end{enumerate}
+%     \begin{informationnote}
+%     如果使用\textnormal{\LuaTeX}，安装字体之后需运行命令\verb+mkluatexfontdb+生成字体索引。
+%     \end{informationnote}
+% \end{enumerate}
+%
+% \section{安装}
+%
+% \subsection{安装到本地}
+%
+% 使用如下命令即可安装本模板到本地：
+% \begin{verbatim}
+%     make install
+% \end{verbatim}
+% 如需卸载，则使用如下命令：
+% \begin{verbatim}
+%     make uninstall
+% \end{verbatim}
+%
+% 对于没有安装\verb+Make+的Windows系统用户，可以使用如下命令安装：
+% \begin{verbatim}
+%     makewin32.bat install
+% \end{verbatim}
+% 如需卸载，则使用如下命令：
+% \begin{verbatim}
+%     makewin32.bat uninstall
+% \end{verbatim}
+% 虽然\verb+makewin32.bat+表现与\verb+Makefile+极其相似，但是还是强烈建议你安装\verb+Make+，对于Windows用户可以在\href{http://gnuwin32.sourceforge.net/packages/make.htm}{这里}下载。
+%
+% \subsection{免安装使用}
+%
+% 如果你希望临时使用本模板，而非安装到本地供长期使用。使用如下命令解压模板文件：
+% \begin{verbatim}
+%     make unpack
+% \end{verbatim}
+% 对于没有安装\verb+Make+的Windows系统用户，则使用如下命令解压：
+% \begin{verbatim}
+%     makewin32.bat unpack
+% \end{verbatim}
+%
+% 再将文件\verb+hustproposal.cls+拷贝到你\TeX{}工程根目录下即可。
+%
+% \section{基本用法}
+%
+% \begin{importantnote}
+% 本文档只能使用\textnormal{\XeLaTeX}或\textnormal{\LuaLaTeX}（推荐）编译。
+% \end{importantnote}
+%
+% 在源文件开头处选择加载本文档类型，即可使用本模板，如下所示：
+% \begin{verbatim}
+%     \documentclass[language=chinese]{hustproposal}
+% \end{verbatim}
+%
+% \subsection{文档类型选项}
+%
+% 加载本文档类型时，有如下选项提供选择。
+%
+% \begin{function}{language}
+%     \begin{syntax}
+%         language = \meta{\textbf{chinese}\orvar{}english}
+%     \end{syntax}
+%     指定论文语言。如果不指定，默认设置为\verb+chinese+。
+% \end{function}
+% \subsection{基本字段设置}
+%
+% 模板中定义一些命令用于设置文档中的字段。
+%
+% \begin{function}{\title}
+%     \begin{syntax}
+%     \cs{title}\Arg{title}
+%     \end{syntax}
+%     用于设定标题。
+% \end{function}
+%
+% \begin{function}{\author}
+%     \begin{syntax}
+%     \cs{author}\Arg{author}
+%     \end{syntax}
+%     用于设定作者名。
+% \end{function}
+%
+% \begin{function}{\major}
+%     \begin{syntax}
+%     \cs{major}\Arg{major}
+%     \end{syntax}
+%     用于设定专业。
+% \end{function}
+%
+% \begin{function}{\department}
+%     \begin{syntax}
+%     \cs{department}\Arg{department}
+%     \end{syntax}
+%     用于设定院系。
+% \end{function}
+%
+% \begin{function}{\division}
+%     \begin{syntax}
+%     \cs{division}\Arg{division}
+%     \end{syntax}
+%     用于设定所属教研室名称。
+% \end{function}
+%
+% \begin{function}{\supervisor}
+%     \begin{syntax}
+%     \cs{supervisor}\Arg{supervisor name}\Arg{supervisor title}
+%     \end{syntax}
+%     用于设定导师和职称。
+% \end{function}
+%
+% \subsection{其它基本命令}
+%
+% 下面来介绍其它基本命令。
+%
+% \begin{function}{\maketitle}
+%     \verb+\maketitle+用于生成标题。
+% \end{function}
+%
+% \begin{function}{\bibliography}
+%     \begin{syntax}
+%     \cs{bibliography}\Arg{.bib file}
+%     \end{syntax}
+%     用于生成参考文献。
+% \end{function}
+%
+% \begin{function}{\TurnOffTabFontSetting,\TurnOnTabFontSetting}
+%     因为模板中设定了表格的行距和字号，使得使用中无法临时自定义表格的行距和字号。故提供两个命令用于关闭和开启默认表格的行距和字号设置。比如你如果需要输出一个自己定义字号的表格，可以使用如下示例：
+%     \begin{verbatim}
+%     \begingroup
+%     \TurnOffTabFontSetting
+%     \footnotesize % 设置字号
+%     \begin{tabular}{...}
+%         <content>
+%     \end{tabular}
+%     \TurnOnTabFontSetting
+%     \endgroup
+%     \end{verbatim}
+% \end{function}
+%
+% \begin{function}{\email}
+%     \begin{syntax}
+%     \cs{email}\Arg{Email Address}
+%     \end{syntax}
+%     用于生成邮箱地址。如\verb+\email{name@example.com}+会生成如下效果的地址：\email{name@example.com}。
+% \end{function}
+%
+% \section{示例}\label{sec:示例}
+% 如下为一个使用本模板的示例。
+%
+% \iffalse 
+%<*driver>
+% \fi
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\documentclass[language=chinese]{hustproposal}
 
+\department{院系}
+\title{标题}
+\author{作者名}
+\major{专业}
+\division{所属教研室}
+\supervisor{导师}{职称}
 
+\begin{document}
+\maketitle
 
+\section{目的和意义}
+\section{应用现状}
+\section{内容与目标}
+\section{思路与步骤}
+\section{进度安排}
+
+\bibliography{参考文献.bib文件}
+
+\end{document}
+\end{lstlisting}
+% \iffalse 
+%</driver>
+% \fi
+%
+% \section{预设宏包介绍}
+%
+% 本模板中预设了一些宏包，下面对其进行简单介绍。
+%
+% \begin{itemize}
+%     \item \pkgurl{algorithm2e} 算法环境。
+%     \item \pkgurl{enumitem} 自定义列表环境的式样。
+%     \item \pkgurl{fancynum} 用于将大数每三位断开。
+%     \item \pkgurl{listings} 代码环境。如需更好的代码高亮可以使用\pkgurl{minted}宏包。
+%     \item \pkgurl{longtable} 跨页的超长表格环境。
+%     \item \pkgurl{ltxtable} \textsf{longtable}环境和\textsf{tabularx}环境的合并。
+%     \item \pkgurl{multirow} 用于表格中合并行。
+%     \item \pkgurl{overpic} 用于在图片上层叠其他内容。
+%     \item \pkgurl{tabularx} 扩展到表格环境。
+%     \item \pkgurl[xypic]{xy-pic} 用于绘制简单图形。如需更高级功能可以使用\pkgurl[pgf]{tikz}宏包。
+%     \item \pkgurl{zhnumber} 用于生成中文数字。
+% \end{itemize}
+%
+% \section{高级设置}
+%
+% \subsection{切换字体}
+%
+% 模板正文字体为宋体（\textsf{AdobeSongStd-Light}），同时我们提供如下命令切换中文字体：
+%
+% \begin{function}{\HEI,\hei}
+%     \begin{syntax}
+%     \{\cs{HEI} \meta{content}\}
+%     \cs{hei}\Arg{content}
+%     \end{syntax}
+%     切换字体为黑体（\textsf{AdobeHeitiStd-Regular}）。
+% \end{function}
+%
+% \begin{function}{\KAI,\kai}
+%     \begin{syntax}
+%     \{\cs{KAI} \meta{content}\}
+%     \cs{kai}\Arg{content}
+%     \end{syntax}
+%     切换字体为楷体（\textsf{AdobeKaitiStd-Regular}）。
+% \end{function}
+%
+% \begin{function}{\FANGSONG,\fangsong}
+%     \begin{syntax}
+%     \{\cs{FANGSONG} \meta{content}\}
+%     \cs{fangsong}\Arg{content}
+%     \end{syntax}
+%     切换字体为仿宋（\textsf{AdobeFangsongStd-Regular}）。
+% \end{function}
+%
+% 如果需要加载其他字体，请参阅宏包\pkgurl{fontspec}，宏包\pkgurl{xeCJK}（对于\XeLaTeX{}）和宏包\pkgurl[luatexja]{luatex-ja}（对于\LuaLaTeX{}）的文档。
+%
+% \part{English Version Instruction}\label{part:English Version Instruction}
+%
+% \section{Requirement}
+% Install the latest version of \href{http://www.tug.org/texlive/}{\texttt{TeXLive}}(Recommend) or \href{http://miktex.org/}{\texttt{MiKTeX}}. Please ensure that all the packages are up-to-date.
+%
+% \section{Installation}
+%
+% \subsection{Install into local}
+%
+% Use the command below to install this template into local.
+% \begin{verbatim}
+%    make install
+% \end{verbatim}
+% If you need uninstall it, use the command below.
+% \begin{verbatim}
+%    make uninstall
+% \end{verbatim}
+%
+% For Windows User who don't install \texttt{Make}, use the command below to install. 
+% \begin{verbatim}
+%     makewin32.bat install
+% \end{verbatim}
+% If you need uninstall it, use the command below.
+% \begin{verbatim}
+%     makewin32.bat uninstall
+% \end{verbatim}
+% Although \texttt{makewin32.bat} behaves much like \texttt{Makefile}, I still
+% recommend you install \texttt{Make} into your Windows. You can download
+% it from \href{http://gnuwin32.sourceforge.net/packages/make.htm}{here}.
+%
+% \subsection{Use without installation}
+%
+% If you want to use this template temporary rather than installing it into local for long term use. Run below command to unpack the package.
+% \begin{verbatim}
+%     make unpack
+% \end{verbatim}
+% For Windows User who don't install \texttt{Make}, use the command below to unpack the package.
+% \begin{verbatim}
+%     makewin32.bat unpack
+% \end{verbatim}
+% Then copy the file \texttt{hustproposal.cls} into your \TeX{} project root directory.
+%
+% \section{Usage}
+% \begin{importantnote}
+% This template can only be compiled by \\
+% \hskip 10pt \textnormal{\XeLaTeX} or\textnormal{\LuaLaTeX}(Recommend).
+% \end{importantnote}
+% 
+% Insert below code in the top of source code to use this template:
+% \begin{verbatim}
+%     \documentclass[language=english]{hustproposal}
+% \end{verbatim}
+%
+% \subsection{Option}
+%
+% There's one option available when use this template.
+%
+% \begin{function}{language}
+%     \begin{syntax}
+%         language = \meta{\textbf{chinese}\orvar{}english}
+%     \end{syntax}
+%     Set what language is used in the document. The default value is \verb+chinese+.
+% \end{function}
+%
+% \subsection{Variables setting}
+%
+% There're some commands which are used to set the variables for the thesis.
+%
+% \begin{function}{\title}
+%     \begin{syntax}
+%     \cs{title}\Arg{title}
+%     \end{syntax}
+%     Set title.
+% \end{function}
+%
+% \begin{function}{\author}
+%     \begin{syntax}
+%     \cs{author}\Arg{author}
+%     \end{syntax}
+%     Set author.
+% \end{function}
+%
+% \begin{function}{\major}
+%     \begin{syntax}
+%     \cs{major}\Arg{major}
+%     \end{syntax}
+%     Set your major.
+% \end{function}
+%
+% \begin{function}{\department}
+%     \begin{syntax}
+%     \cs{department}\Arg{department}
+%     \end{syntax}
+%     Set your department.
+% \end{function}
+%
+% \begin{function}{\division}
+%     \begin{syntax}
+%     \cs{division}\Arg{division}
+%     \end{syntax}
+%     Set your research division.
+% \end{function}
+%
+% \begin{function}{\supervisor}
+%     \begin{syntax}
+%     \cs{supervisor}\Arg{supervisor}
+%     \end{syntax}
+%     Set your supervisor.
+% \end{function}
+%
+% \subsection{Other commands}
+%
+% \begin{function}{\maketitle}
+%     \verb+\maketitle+ is used to create the title.
+% \end{function}
+%
+% \begin{function}{\bibliography}
+%     \begin{syntax}
+%     \cs{bibliography}\Arg{.bib file}
+%     \end{syntax}
+%     Used to create bibliography page.
+% \end{function}
+%
+% \begin{function}{\TurnOffTabFontSetting,\TurnOnTabFontSetting}
+%     This template has set the font size and line spread for all the tables which makes it's impossible to change font format temporary in one table.  So it provides these to command to temporary disable or enable default font setting in table. For example, if you want to change table font size, you can use the code like this:
+%     \begin{verbatim}
+%     \begingroup
+%     \TurnOffTabFontSetting
+%     \footnotesize % Set your font format as you like.
+%     \begin{tabular}{...}
+%         <content>
+%     \end{tabular}
+%     \TurnOnTabFontSetting
+%     \endgroup
+%     \end{verbatim}
+% \end{function}
+%
+% \begin{function}{\email}
+%     \begin{syntax}
+%     \cs{email}\Arg{Email Address}
+%     \end{syntax}
+%     A command to display email address. For example, \verb+\email{name@example.com}+ would look like this: \email{name@example.com}.
+% \end{function}
+%
+% \section{example}\label{sec:example}
+% Below is a example of using this template. 
+% 
+% \iffalse 
+%<*driver>
+% \fi
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\documentclass[language=english]{hustproposal}
+
+\department{your department}
+\title{your title}
+\author{your name}
+\major{your major}
+\division{your research division}
+\supervisor{your supervisor}
+
+\begin{document}
+\maketitle
+
+\section{Research Motivation}
+\section{Related Work}
+\section{Research Objective}
+\section{Research Plan}
+\section{Schedule}
+
+\bibliography{.bib file}
+
+\end{document}
+\end{lstlisting}
+% \iffalse 
+%</driver>
+% \fi
+%
+% \section{Introduction to some packages used in the template}
+% 
+% Here's a list of some packages used in the template.
+% 
+% \begin{itemize}
+%     \item \pkgurl{algorithm2e} For display algorithm.
+%     \item \pkgurl{enumitem} For set the style of enumerate, itemize and description environment.
+%     \item \pkgurl{fancynum} Display the really big number.
+%     \item \pkgurl{listings} For display the highlighted code. If you need better quality, use the package \pkgurl{minted}.
+%     \item \pkgurl{longtable} Create a very long table.
+%     \item \pkgurl{ltxtable} Combine the features of \textsf{longtable} anb \textsf{tabularx}.
+%     \item \pkgurl{multirow} Combine multi-rows in table.
+%     \item \pkgurl{overpic} Put something over a picture,
+%     \item \pkgurl{tabularx} A better table environment.
+%     \item \pkgurl[xypic]{xy-pic} To draw some picture. If you need more advanced features, use the package \pkgurl[pgf]{tikz}.
+% \end{itemize}
+%
 % \StopEventually{
 %  \PrintIndex
 % }
@@ -276,7 +711,7 @@
   \ifthenelse{\equal{#1}{chinese} \OR \equal{#1}{english}}{
     \gdef\HUST@language{#1}
   }{
-    \ClassError{hustreport}
+    \ClassError{hustproposal}
     {Option language can only be 'chinese' or 'english'}
     {Try to remove option language^^J}
   }
@@ -1079,7 +1514,7 @@
 \title{}
 \author{Xu Cheng}
 \major{Advanced Class}
-\division{Division: Internet Technology and Engineering R\&D Center}
+\division{Internet Technology and Engineering R\&D Center}
 \supervisor{Ass. Prof. Xiaojun Hei}
 
 \begin{document}
