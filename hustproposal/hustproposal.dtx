@@ -51,12 +51,11 @@
 \newjfontfamily\KAI{AdobeKaitiStd-Regular}
 \newjfontfamily\FANGSONG{AdobeFangsongStd-Regular}
 
-\usepackage{interfaces-LaTeX}
-\changefont{linespread=1.2}
+\linespread{1.2}\selectfont
 
 \usepackage[top=1.2in,bottom=1.2in,left=1.5in,right=1in]{geometry}
-\pdfpagewidth=\paperwidth
-\pdfpageheight=\paperheight
+\pagewidth=\paperwidth
+\pageheight=\paperheight
 
 \usepackage{color}
 \usepackage[table]{xcolor}
@@ -138,7 +137,7 @@
   {
     \bfseries
     \centering
-    \changefont{size=18pt}
+    \fontsize{18pt}{23.4pt}\selectfont
   }
   {\thepart}
   {1em}
@@ -174,7 +173,7 @@
         \href
         {
         http://mirrors.ctan.org/help/Catalogue/entries/
-        \tl_expandable_lowercase:n {#2} .html
+        \str_fold_case:n {#2} .html
         }
         { \textsf{#2} }
     }
@@ -182,7 +181,7 @@
         \href
         {
         http://mirrors.ctan.org/help/Catalogue/entries/
-        \tl_expandable_lowercase:n {#1} .html
+        \str_fold_case:n {#1} .html
         }
         { \textsf{#2} }
     }
@@ -457,7 +456,6 @@
 %     \item \pkgurl{multirow} 用于表格中合并行。
 %     \item \pkgurl{overpic} 用于在图片上层叠其他内容。
 %     \item \pkgurl{tabularx} 扩展到表格环境。
-%     \item \pkgurl[xypic]{xy-pic} 用于绘制简单图形。如需更高级功能可以使用\pkgurl[pgf]{tikz}宏包。
 %     \item \pkgurl{zhnumber} 用于生成中文数字。
 % \end{itemize}
 %
@@ -684,7 +682,6 @@
 %     \item \pkgurl{multirow} Combine multi-rows in table.
 %     \item \pkgurl{overpic} Put something over a picture,
 %     \item \pkgurl{tabularx} A better table environment.
-%     \item \pkgurl[xypic]{xy-pic} To draw some picture. If you need more advanced features, use the package \pkgurl[pgf]{tikz}.
 % \end{itemize}
 %
 % \StopEventually{
@@ -905,10 +902,9 @@
 %    \end{macrocode}
 %
 % \section{Basic Format}
-% Use \pkgurl{interfaces} package to handle font size and line spread. We set global line spread to 1.3.
+% We set global line spread to 1.3.
 %    \begin{macrocode}
-\RequirePackage{interfaces-LaTeX}
-\changefont{linespread=1.3}
+\linespread{1.3}\selectfont
 %    \end{macrocode}
 %
 % Use \pkgurl{geometry} package to handle paper page.
@@ -921,8 +917,8 @@
   right=1.1in,
   includefoot
 }
-\pdfpagewidth=\paperwidth
-\pdfpageheight=\paperheight
+\pagewidth=\paperwidth
+\pageheight=\paperheight
 %    \end{macrocode}
 %
 % Indent of paragraph and skip between paragraphs.
@@ -968,7 +964,6 @@
 %
 % Load packages for picture.
 %    \begin{macrocode}
-\RequirePackage[all]{xy}
 \RequirePackage{overpic}
 \RequirePackage{graphicx,caption,subcaption}
 %    \end{macrocode}
@@ -1295,17 +1290,17 @@
 %    \begin{macrocode}
 \AtBeginEnvironment{tabular}{
   \ifHUST@useoldtabular\else
-    \changefont{size=11pt,linespread=1.4}
+    \fontsize{11pt}{15.4pt}\selectfont
   \fi
 }
 \AtBeginEnvironment{tabularx}{
   \ifHUST@useoldtabular\else
-    \changefont{size=11pt,linespread=1.4}
+    \fontsize{11pt}{15.4pt}\selectfont
   \fi
 }
 \AtBeginEnvironment{longtable}{
   \ifHUST@useoldtabular\else
-    \changefont{size=11pt,linespread=1.4}
+    \fontsize{11pt}{15.4pt}\selectfont
   \fi
 }
 %    \end{macrocode}
@@ -1313,7 +1308,7 @@
 % \subsection{Caption Style}
 % Set caption font size as 11pt, use hang format, remove `:' after number and set the skip between context as 12pt.
 %    \begin{macrocode}
-\DeclareCaptionFont{HUST@captionfont}{\changefont{size=11pt}}
+\DeclareCaptionFont{HUST@captionfont}{\fontsize{11pt}{14.3pt}\selectfont}
 \DeclareCaptionLabelFormat{HUST@caplabel}{#1~#2}
 \captionsetup{
   font=HUST@captionfont,
@@ -1330,7 +1325,7 @@
 \definecolor{HUST@lstmauve}{rgb}{0.58,0,0.82}
 
 \lstset{
-  basicstyle=\footnotesize\ttfamily\changefont{linespread=1}\FANGSONG,
+  basicstyle=\footnotesize\ttfamily\linespread{1}\selectfont\FANGSONG,
   keywordstyle=\color{blue}\bfseries,
   commentstyle=\color{HUST@lstgreen}\itshape\KAI,
   stringstyle=\color{HUST@lstmauve},
@@ -1354,23 +1349,23 @@
 % Section tilte format and spacing setting.
 %    \begin{macrocode}
 \ifthenelse{\equal{\HUST@language}{chinese}}{
-    \titleformat{\section}{\bfseries\HEI\changefont{size=16pt}}
+    \titleformat{\section}{\bfseries\HEI\fontsize{16pt}{20.8pt}\selectfont}
                 {\zhnumber{\thesection}}{1em}{}
 }{
-    \titleformat*{\section}{\bfseries\HEI\changefont{size=16pt}}
+    \titleformat*{\section}{\bfseries\HEI\fontsize{16pt}{20.8pt}\selectfont}
 }
 \titlespacing*{\section}{0pt}{18pt}{6pt}
 %    \end{macrocode}
 %
 % Subsection tilte format and spacing setting.
 %    \begin{macrocode}
-\titleformat*{\subsection}{\bfseries\HEI\changefont{size=14pt}}
+\titleformat*{\subsection}{\bfseries\HEI\fontsize{14pt}{18.2pt}\selectfont}
 \titlespacing*{\subsection}{0pt}{12pt}{6pt}
 %    \end{macrocode}
 %
 % Subsubsection tilte format and spacing setting.
 %    \begin{macrocode}
-\titleformat*{\subsubsection}{\bfseries\HEI\changefont{size=13pt}}
+\titleformat*{\subsubsection}{\bfseries\HEI\fontsize{13pt}{16.9pt}\selectfont}
 \titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
 %    \end{macrocode}
 %
@@ -1412,7 +1407,7 @@
     \gdef\@author{}
     \gdef\@date{}
     \HUST@oldmaketitle
-    \vspace{-3em}\sffamily\KAI\changefont{size=13.75pt}
+    \vspace{-3em}\sffamily\KAI\fontsize{13.75pt}{17.9pt}\selectfont
     \ifthenelse{\equal{\HUST@language}{chinese}}{
         \noindent \HUST@departmenttitle \\
         \null\hspace{2em} \HUST@department \par
